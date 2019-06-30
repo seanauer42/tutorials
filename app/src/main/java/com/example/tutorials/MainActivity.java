@@ -35,13 +35,17 @@ public class MainActivity extends AppCompatActivity {
      */
     int quantity = 0;
     double price = 4.50 * .07 + 4.5;
+    String message = "Free!";
 
     /**
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        display(quantity);
-        displayPrice(quantity * price);
+        String priceMessage = "Free";
+        displayMessage(message);
+        concat(price, quantity);
+//        display(quantity);
+//        displayPrice(quantity * price);
     }
 
     /**
@@ -62,19 +66,16 @@ public class MainActivity extends AppCompatActivity {
     public void increment(View view) {
         quantity ++;
         display(quantity);
-        displayPrice(quantity * price);
     }
 
     public void decrement(View view) {
         if(quantity > 0) {
             quantity--;
             display(quantity);
-            displayPrice(quantity * price);
         }
         else{
             quantity = 0;
             display(quantity);
-            displayPrice(quantity * price);
         }
     }
 
@@ -84,5 +85,20 @@ public class MainActivity extends AppCompatActivity {
     private void display(double number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
+    }
+    /**
+     * This method concatenates
+     */
+    private void concat(double price, int quantity) {
+        message = "Total: " + price * quantity + "/n Thank you!";
+    }
+
+    /**
+     * This displays messages
+     */
+    private void displayMessage(String message) {
+        TextView priceTextView = findViewById(R.id.price_text_view);
+
+        priceTextView.setText(message);
     }
 }
